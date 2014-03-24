@@ -15,8 +15,8 @@ function FixedUpdate () {
 	//if the player is in the air
 	if (grounded == false)
 	{
-		//push the player downwards
-		transform.Translate(Vector3.up * -10 * Time.deltaTime);
+	//push the player downwards
+	transform.Translate(Vector3.up * -10 * Time.deltaTime);
 	}
 	//horizontal movement
 	transform.Translate(Vector3.right * 10 * Time.deltaTime * Input.GetAxis("Horizontal"));
@@ -24,8 +24,8 @@ function FixedUpdate () {
 	if (grounded == true && Input.GetKeyDown(KeyCode.UpArrow))
 	{
 		//jump
-		transform.Translate(Vector3.up * 200 * Time.deltaTime);
-		//rigidbody.AddForce(Vector3(0,100,0),ForceMode.Impulse);
+	transform.Translate(Vector3.up * 200 * Time.deltaTime);
+	
 	}
 	anim.SetBool("WalkingLeft",false);
 	anim.SetBool("WalkingRight",false);
@@ -42,23 +42,23 @@ function FixedUpdate () {
 	grounded = false;
 }
 
-function OnTriggerEnter(other:Collider)
+function OnCollisionEnter(other:Collision)
 {
-	if (other.gameObject.tag == "platform")
+	if (other.collider.gameObject.tag == "platform")
 	{
 		
 		if (transform.position.y > other.transform.position.y)
 		{
 			grounded = true;
 		}
-	
+
 	}
 
 }
 
-function OnTriggerStay(other:Collider)
+function OnCollisionStay(other:Collision)
 {
-	if (other.gameObject.tag == "platform")
+	if (other.collider.gameObject.tag == "platform")
 	{
 		
 		if (transform.position.y > other.transform.position.y)
